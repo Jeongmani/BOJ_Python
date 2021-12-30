@@ -17,8 +17,8 @@ while division_B<= B:              #B의 약수들을 구해 리스트에 추가
 for i in A_list:                        #GCD구하기 : A,B리스트에 공통된 수들 중 가장 큰 값
     if i in B_list:
         GCD=i
-print(GCD)
+print(GCD)        #GCD출력
 
 LCM=(A//GCD)*(B//GCD)*GCD   #LCM의 성질을 이용한 식
 
-print(LCM)
+print(LCM)       #LCM출력
