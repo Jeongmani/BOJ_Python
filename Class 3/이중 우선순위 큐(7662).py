@@ -12,12 +12,15 @@ for _ in range(T):
             heapq.heappush(array_max,-int(command[1]))
         if command[0]=='D':
             if len(array_min)==0 or len(array_max) ==0:
-                print('EMPTY')
+                pass
             else:
                 if command[1]=='1':
                     a=-heapq.heappop(array_max)
                     array_min.remove(a)
                 elif command[1]=='-1':
-                    a=heapq.heappop(array_min)
-                    array_max.remove(-a)
-    print(-heapq.heappop(array_max),heapq.heappop(array_min))
+                    a=-heapq.heappop(array_min)
+                    array_max.remove(a)
+    if len(array_min)==0 or len(array_max) ==0:
+        print('EMPTY')
+    else:    
+        print(-heapq.heappop(array_max),heapq.heappop(array_min))
