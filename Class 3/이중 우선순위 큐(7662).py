@@ -1,26 +1,38 @@
 import heapq
 import sys
-array_min=[]
-array_max=[]
+
 T=int(sys.stdin.readline().rstrip())
 for _ in range(T):
+    array_min=[]
+    array_max=[]
+    visited=[False]*1_000_001
     k=int(sys.stdin.readline().rstrip())
-    for _ in range(k):
-        command=list(map(str,sys.stdin.readline().split()))
+    for key in range(k):
+        command=sys.stdin.readline().split()
         if command[0]=='I':
-            heapq.heappush(array_min,int(command[1]))
-            heapq.heappush(array_max,-int(command[1]))
-        if command[0]=='D':
-            if len(array_min)==0 or len(array_max) ==0:
-                pass
-            else:
-                if command[1]=='1':
-                    a=-heapq.heappop(array_max)
-                    array_min.remove(a)
-                elif command[1]=='-1':
-                    a=-heapq.heappop(array_min)
-                    array_max.remove(a)
-    if len(array_min)==0 or len(array_max) ==0:
+            heapq.heappush(array_min,(int(command[1]),key))
+            heapq.heappush(array_max,(-int(command[1]),key))
+            visited[key]=True
+        else:
+            if command[1]=='-1':
+                while array_min and not visited[array_min[0][1]]:
+                    heapq.heappop(array_min)
+                if array_min:
+                    visited[array_min[0][1]]=False
+                    heapq.heappop(array_min)
+                
+            elif command[1]=='1':
+                while array_max and not visited[array_max[0][1]]:
+                    heapq.heappop(array_max)
+                if array_max:
+                    visited[array_max[0][1]]=False
+                    heapq.heappop(array_max)
+    
+    while array_min and not visited[array_min[0][1]]:
+        heapq.heappop(array_min)    
+    while array_max and not visited[array_max[0][1]]:
+        heapq.heappop(array_max)
+    if array_min and array_max:
+        print(-array_max[0][0],array_max[0][0])
+    else:
         print('EMPTY')
-    else:    
-        print(-heapq.heappop(array_max),heapq.heappop(array_min))
