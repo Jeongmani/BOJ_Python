@@ -33,6 +33,6 @@ for _ in range(T):
     while array_max and not visited[array_max[0][1]]:
         heapq.heappop(array_max)
     if array_min and array_max:
-        print(-array_max[0][0],array_max[0][0])
+        print(-array_max[0][0],array_min[0][0])
     else:
         print('EMPTY')
