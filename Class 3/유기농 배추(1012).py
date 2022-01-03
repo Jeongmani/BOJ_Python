@@ -24,9 +24,9 @@ for _ in range(Test_case):
         graph[y][x]=1                       #입력 받은값을 1로 변경해준다 (x,y로 받고 graph[y][x]로 해준 이유는 x는 가로길이 즉, 행을 의미하고 y는 세로 길이 즉, 열을 의미하기 때문  )
 
     result=0
-    for i in range(N):
+    for i in range(N):  
         for j in range(M):
-            if graph[i][j]==1:
+            if graph[i][j]==1:              #확인한 그래프의 노드의 값이 1일 경우 dfs함수를 실행하고 result에 1값을 증가시킨다.
                 dfs(i,j)
                 result+=1
     print(result)
