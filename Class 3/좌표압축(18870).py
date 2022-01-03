@@ -12,7 +12,7 @@ while True:
         break
     else:
         temp=heapq.heappop(rank)
-    for i in range(len(N)):
+    for i in range(n):
         if N[i]==temp:
             N[i]=ranking 
     ranking+=1
